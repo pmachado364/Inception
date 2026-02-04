@@ -1,0 +1,7 @@
+# Secrets should not be committed to GitHub
+secrets/
+srcs/.env
+
+# Temporary or irrelevant files
+*.log
+.DS_Store
