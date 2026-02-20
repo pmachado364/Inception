@@ -19,6 +19,9 @@ RUN apt-get update -q && \
         ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
+#copy PHP-FPM configuration file to the container (this configures the PHP-FPM pool for our WordPress site)
+COPY conf/www.conf /etc/php/8.2/fpm/pool.d/www.conf
+
 #install WP-CLI and install it in /usr/local/bin/wp for easy access (this makes the wp command globally available in the container)
 #note : WP-CLI is a command-line tool for managing WordPress installations
 #this allows us not having to install WordPress manually.
@@ -28,17 +31,10 @@ RUN wget -q https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
     chmod +x /usr/local/bin/wp
 
 #copy WordPress initialization script (runs at container startup)
-COPY tools/wordpress.sh /usr/local/bin/wordpress.sh
+COPY tools/entrypoint_wp.sh /usr/local/bin/wordpress.sh
 
 #change permissions for the wordpress.sh script to make it executable
 RUN chmod +x /usr/local/bin/wordpress.sh
-
-#fix logging (So we can see errors)
-RUN sed -i 's|error_log = .*|error_log = /dev/stderr|' /etc/php/*/fpm/php-fpm.conf
-
-#configure PHP-FPM to listen on port 9000 and accept connections from any IP address.
-#This allows NGINX to connect to PHP-FPM using the container's IP address and port 9000.
-RUN sed -i 's|^listen = .*|listen = 0.0.0.0:9000|' /etc/php/*/fpm/pool.d/www.conf
 
 #we create the PID directory for PHP and the site directory for WordPress
 #we give ownership of the WordPress directory to www-data (the user PHP runs as)
