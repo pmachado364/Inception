@@ -21,6 +21,19 @@ services:
       - .env
     depends_on:
       - mariadb
+    
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    volumes:
+      - wordpress:/var/www/html
+    ports:
+      - "443:443"
+    networks:
+      - all
+    restart: on-failure
+    depends_on:
+      - wordpress
 
 volumes:
   database:
