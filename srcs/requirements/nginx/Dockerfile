@@ -18,7 +18,7 @@ RUN openssl req -x509 -nodes -days 365 \
     -newkey rsa:2048 \
     -keyout /etc/ssl/private/nginx-selfsigned.key \
     -out /etc/ssl/certs/nginx-selfsigned.crt \
-    -subj "/C=PT/ST=Porto/L=Porto/O=42/OU=Inception/CN=localhost"
+    -subj "/C=PT/ST=Porto/L=Porto/O=42/OU=Inception/CN=pmachado.42.fr"
 
 #copy the Nginx configuration file to the container
 COPY conf/site.conf /etc/nginx/conf.d/default.conf

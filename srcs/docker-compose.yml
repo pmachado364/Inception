@@ -37,7 +37,17 @@ services:
 
 volumes:
   database:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/pmachado/data/database
+      o: bind
   wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/pmachado/data/wordpress
+      o: bind
 
 networks:
   all:

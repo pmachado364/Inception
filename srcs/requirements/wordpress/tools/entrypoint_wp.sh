@@ -17,7 +17,7 @@ done
 echo "MariaDB is ready."
 
 #if the wordpress config file doesn't exist, create it and download wordpress
-if [ ! -f "/var/www/html/wp-config.php" ]; then
+if ! wp core is-installed --allow-root; then
 	echo "WordPress is not configured. Configuring now."
 
 	#we need to download wordpress and create the config file before starting php-fpm, otherwise it will fail because of missing files
@@ -32,12 +32,17 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
 
 	#if the database is empty, we need to install wordpress
 	wp core install \
-	--url="localhost" \
+	--url="$DOMAIN_NAME" \
 	--title="Inception WordPress" \
 	--admin_user="$WP_ADMIN_USER" \
 	--admin_password="$WP_ADMIN_PASSWORD" \
 	--admin_email="$WP_ADMIN_EMAIL" \
 	--allow-root
+
+	wp user create "$WP_USER" "$WP_USER_EMAIL" \
+    --role=author \
+    --user_pass="$WP_USER_PASSWORD" \
+    --allow-root
 fi
 
 chown -R www-data:www-data /var/www/html
