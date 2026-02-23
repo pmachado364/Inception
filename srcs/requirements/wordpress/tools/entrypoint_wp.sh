@@ -16,33 +16,35 @@ done
 
 echo "MariaDB is ready."
 
-#if the wordpress config file doesn't exist, create it and download wordpress
+#if WordPress core files don't exist → download
+if [ ! -f /var/www/html/wp-load.php ]; then
+    wp core download --allow-root
+fi
+
+#if config does not exist → create config
+if [ ! -f /var/www/html/wp-config.php ]; then
+    wp config create \
+        --dbname="$DB_NAME" \
+        --dbuser="$DB_USER" \
+        --dbpass="$DB_PASSWORD" \
+        --dbhost="mariadb" \
+        --allow-root
+fi
+
+#if not installed in DB → install
 if ! wp core is-installed --allow-root; then
-	echo "WordPress is not configured. Configuring now."
+    wp core install \
+        --url="$DOMAIN_NAME" \
+        --title="Inception WordPress" \
+        --admin_user="$WP_ADMIN_USER" \
+        --admin_password="$WP_ADMIN_PASSWORD" \
+        --admin_email="$WP_ADMIN_EMAIL" \
+        --allow-root
 
-	#we need to download wordpress and create the config file before starting php-fpm, otherwise it will fail because of missing files
-	wp core download --allow-root
-	# create the wp-config.php file with the database credentials and the database host set to mariadb, which is the name of the service in docker-compose
-	wp config create \
-	--dbname="$DB_NAME" \
-	--dbuser="$DB_USER" \
-	--dbpass="$DB_PASSWORD" \
-	--dbhost="mariadb" \
-	--allow-root
-
-	#if the database is empty, we need to install wordpress
-	wp core install \
-	--url="$DOMAIN_NAME" \
-	--title="Inception WordPress" \
-	--admin_user="$WP_ADMIN_USER" \
-	--admin_password="$WP_ADMIN_PASSWORD" \
-	--admin_email="$WP_ADMIN_EMAIL" \
-	--allow-root
-
-	wp user create "$WP_USER" "$WP_USER_EMAIL" \
-    --role=author \
-    --user_pass="$WP_USER_PASSWORD" \
-    --allow-root
+    wp user create "$WP_USER" "$WP_USER_EMAIL" \
+        --role=author \
+        --user_pass="$WP_USER_PASSWORD" \
+        --allow-root
 fi
 
 chown -R www-data:www-data /var/www/html
