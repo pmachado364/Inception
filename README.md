@@ -2,6 +2,15 @@
 
 # Inception
 
+---
+## Documentation Portal
+
+Depending on your needs, please refer to the detailed documentation below:
+
+*   **[What is this project?](#overview)** (Read on above for a high-level summary)
+*   **[User Documentation](docs/USER_DOC.md):** Read this if you just want to **run and use** the application. It covers prerequisites, installation steps, accessing the site, and basic troubleshooting.
+*   **[Developer Documentation](docs/DEV_DOC.md):** Read this if you want to understand the **technical implementation**. It covers the Dockerfile strategies, configuration choices, network design, and the `Makefile` structure.
+---
 
 ## Overview
 
@@ -98,11 +107,3 @@ inception/
     *(The first build might take a few minutes).*
 4.  **Access:** Open `https://pmachado.42.fr` in your browser. A warning will be issued due to our self-signed certificate but you can safely proceed.
 ---
-
-## Documentation Portal
-
-Depending on your needs, please refer to the detailed documentation below:
-
-*   **[What is this project?](#overview)** (Read on above for a high-level summary)
-*   **[User Documentation](docs/USER_DOC.md):** Read this if you just want to **run and use** the application. It covers prerequisites, installation steps, accessing the site, and basic troubleshooting.
-*   **[Developer Documentation](docs/DEV_DOC.md):** Read this if you want to understand the **technical implementation**. It covers the Dockerfile strategies, configuration choices, network design, and the `Makefile` structure.
