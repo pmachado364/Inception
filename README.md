@@ -86,7 +86,7 @@ inception/
         │   └── conf/
         │       └── site.conf
         |
-        ├── wordpress/
+        └── wordpress/
             ├── Dockerfile
             ├── conf/
             │   └── www.conf
