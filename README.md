@@ -17,7 +17,7 @@ Depending on your needs, please refer to the detailed documentation below:
 Inception is a system administration project focused on setting up a small-scale, containerized web infrastructure using Docker.
 
 The primary goal is to understand containerization and networking by building services **from scratch**, rather than relying on pre-configured images.
-The project deploys a functional WordPress website using a multi-container architecture composed of:
+The project deploys a functional WordPress website built on a multi-container architecture composed of:
 
 -   **NGINX:** The single public entry point, handling HTTPS (TLSv1.2 / TLSv1.3).
 -   **WordPress + PHP-FPM:** The application layer serving dynamic content.
