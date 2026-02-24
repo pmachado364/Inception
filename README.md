@@ -34,19 +34,20 @@ The entire infrastructure runs inside a Linux virtual machine and only exposes p
 
 The following diagram illustrates how the services communicate and where persistent data is stored.
 ```mermaid
+%%{init: {'theme':'base'}}%%
 graph TD
 
-    Client["Client Browser"] -->|HTTPS :443| NGINX["NGINX"]
+Client["Client Browser"] -->|HTTPS :443| NGINX["NGINX"]
 
-    subgraph Internal_Network["Docker Network"]
-        NGINX -->|FastCGI :9000| WP["WordPress + PHP-FPM"]
-        WP -->|TCP :3306| DB["MariaDB"]
-    end
+subgraph "Docker Network"
+NGINX -->|FastCGI :9000| WP["WordPress + PHP-FPM"]
+WP -->|TCP :3306| DB["MariaDB"]
+end
 
-    subgraph Persistent_Storage["Named Volumes"]
-        WP -.->|/var/www/html| VolWP["WordPress Data"]
-        DB -.->|/var/lib/mysql| VolDB["Database Data"]
-    end
+subgraph "Named Volumes"
+WP -.->|/var/www/html| VolWP["WordPress Data"]
+DB -.->|/var/lib/mysql| VolDB["Database Data"]
+end
 ```
 
 ## Quick Start (TL;DR)
