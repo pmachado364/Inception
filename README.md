@@ -47,7 +47,6 @@ graph TD
         WP -.->|/var/www/html| VolWP["WordPress Data"]
         DB -.->|/var/lib/mysql| VolDB["Database Data"]
     end
-...
 ```
 
 ## Quick Start (TL;DR)
