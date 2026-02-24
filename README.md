@@ -33,7 +33,7 @@ The entire infrastructure runs inside a Linux virtual machine and only exposes p
 ## High-Level Architecture
 
 The following diagram illustrates how the services communicate and where persistent data is stored.
-
+```mermaid
 graph TD
 
     Client["Client Browser"] -->|HTTPS :443| NGINX["NGINX"]
@@ -47,6 +47,8 @@ graph TD
         WP -.->|/var/www/html| VolWP["WordPress Data"]
         DB -.->|/var/lib/mysql| VolDB["Database Data"]
     end
+...
+```
 
 ## Quick Start (TL;DR)
 
