@@ -12,6 +12,19 @@ Depending on your needs, please refer to the detailed documentation below:
 *   **[Developer Documentation](docs/DEV_DOC.md):** Read this if you want to understand the **technical implementation**. It covers the Dockerfile strategies, configuration choices, network design, and the `Makefile` structure.
 ---
 
+## Quick Start (TL;DR)
+
+1.  **Prerequisites:** Ensure Docker, Docker Compose, and Make are installed in a Debian Bookworm VM.
+2.  **Host Config:** Add the following line to your host's `/etc/hosts` file:
+    `127.0.0.1 pmachado.42.fr`
+3.  **Run:** Execute the following command at the project root:
+    ```bash
+    make up
+    ```
+    *(The first build might take a few minutes).*
+4.  **Access:** Open `https://pmachado.42.fr` in your browser. A warning will be issued due to our self-signed certificate but you can safely proceed.
+
+
 ## Overview
 
 Inception is a system administration project focused on setting up a small-scale, containerized web infrastructure using Docker.
@@ -94,16 +107,3 @@ inception/
                 └── entrypoint_wp.sh
 
 ```
-
-## Quick Start (TL;DR)
-
-1.  **Prerequisites:** Ensure Docker, Docker Compose, and Make are installed in a Debian Bookworm VM.
-2.  **Host Config:** Add the following line to your host's `/etc/hosts` file:
-    `127.0.0.1 pmachado.42.fr`
-3.  **Run:** Execute the following command at the project root:
-    ```bash
-    make up
-    ```
-    *(The first build might take a few minutes).*
-4.  **Access:** Open `https://pmachado.42.fr` in your browser. A warning will be issued due to our self-signed certificate but you can safely proceed.
----
