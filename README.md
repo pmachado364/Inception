@@ -34,7 +34,13 @@ The entire infrastructure runs inside a Linux virtual machine and only exposes p
 
 The following diagram illustrates how the services communicate and where persistent data is stored.
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {'theme':'base', 'themeVariables': {
+  'primaryColor': '#ffffff',
+  'primaryBorderColor': '#000000',
+  'lineColor': '#000000',
+  'secondaryColor': '#ffffff',
+  'tertiaryColor': '#ffffff'
+}}}%%
 graph TD
 
 Client["Client Browser"] -->|HTTPS :443| NGINX["NGINX"]
