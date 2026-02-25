@@ -27,7 +27,7 @@ Before running the project, ensure:
 
 ## Initial Setup
 
-### Configure Local Domain
+#### Configure Local Domain
 
 Edit your `/etc/hosts` file:
 
