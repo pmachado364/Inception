@@ -8,8 +8,8 @@
 Depending on your needs, please refer to the detailed documentation below:
 
 *   **[What is this project?](#overview)** (Read on below for a high-level summary)
-*   **[User Documentation](docs/USER_DOC.md):** Read this if you just want to **run and use** the application. It covers prerequisites, installation steps, accessing the site, and basic troubleshooting.
-*   **[Developer Documentation](docs/DEV_DOC.md):** Read this if you want to understand the **technical implementation**. It covers the Dockerfile strategies, configuration choices, network design, and the `Makefile` structure.
+*   **[User Documentation](USER_DOC.md):** Read this if you just want to **run and use** the application. It covers prerequisites, installation steps, accessing the site, and basic troubleshooting.
+*   **[Developer Documentation](DEV_DOC.md):** Read this if you want to understand the **technical implementation**. It covers the Dockerfile strategies, configuration choices, network design, and the `Makefile` structure.
 ---
 
 ## Quick Start (TL;DR)
