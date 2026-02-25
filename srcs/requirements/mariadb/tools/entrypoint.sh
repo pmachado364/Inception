@@ -11,7 +11,7 @@ INIT_FILE="/var/lib/mysql/.initialized"
 #check if the marker file exists, if not, initialize the database
 if [ ! -f "$INIT_FILE" ]; then
 	echo "mariadb initialization ..."
-	mariadbd &
+	gosu mysql mariadbd --skip-networking &
 	#wait until mariadb is ready to accept connections
 	until mariadb-admin ping --silent; do
 		sleep 1
@@ -20,18 +20,19 @@ if [ ! -f "$INIT_FILE" ]; then
 	echo "mariadb initialized successfully. Initializing SQL..."
 
 	#run the SQL initialization script to set up the database schema and initial data
-	    mariadb << EOF
-		CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;
-		CREATE USER IF NOT EXISTS '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASSWORD}';
-		GRANT ALL PRIVILEGES ON \`${DB_NAME}\`.* TO '${DB_USER}'@'%';
-		ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASSWORD}';
+	mariadb << EOF
+CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;
+CREATE USER IF NOT EXISTS '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASSWORD}';
+GRANT ALL PRIVILEGES ON \`${DB_NAME}\`.* TO '${DB_USER}'@'%';
+FLUSH PRIVILEGES;
+ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASSWORD}';
 EOF
 
 	#Create the marker file to indicate that the database has been initialized
 	touch "$INIT_FILE"
-	mariadb-admin shutdown
+	mariadb-admin -u root -p"${DB_ROOT_PASSWORD}" shutdown
 	echo "mariadb initialization finished."
 fi
 
 #execute the command passed as arguments to the script
-exec "$@"
+exec gosu mysql "$@"
