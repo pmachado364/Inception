@@ -15,14 +15,15 @@ Depending on your needs, please refer to the detailed documentation below:
 ## Quick Start (TL;DR)
 
 1.  **Prerequisites:** Ensure Docker, Docker Compose, and Make are installed in a Debian Bookworm VM.
-2.  **Host Config:** Add the following line to your host's `/etc/hosts` file:
-    `127.0.0.1 pmachado.42.fr`
+2.  **Host Config:** Add the following line to your host's `/etc/hosts` file:  
+    `127.0.0.1 <your_login>.42.fr`  
+Replace `<your_login>` with your system username.
 3.  **Run:** Execute the following command at the project root:
     ```bash
     make up
     ```
-    *(The first build might take a few minutes).*
-4.  **Access:** Open `https://pmachado.42.fr` in your browser. A warning will be issued due to our self-signed certificate but you can safely proceed.
+    *(The first build may take a few minutes).*
+4.  **Access:** Open `https://<your_login>.42.fr` - A browser warning will appear due to the self-signed certificate — you can safely proceed.
 
 
 ## Overview
@@ -57,7 +58,7 @@ This diagram illustrates how the services communicate and where persistent data 
   'primaryColor': '#ffffff',
   'primaryBorderColor': '#000000',
   'lineColor': '#000000',
-  'secondaryColor': '#ffffff',
+  'secondaryColor': '#ffffff',pmachado
   'tertiaryColor': '#ffffff'
 }}}%%
 graph TD
@@ -98,7 +99,6 @@ inception/
         │   ├── Dockerfile
         │   └── conf/
         │       └── site.conf
-        |
         └── wordpress/
             ├── Dockerfile
             ├── conf/

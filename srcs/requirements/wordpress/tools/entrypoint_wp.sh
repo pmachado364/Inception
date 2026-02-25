@@ -34,7 +34,7 @@ fi
 #if not installed in DB → install
 if ! wp core is-installed --allow-root; then
     wp core install \
-        --url="$DOMAIN_NAME" \
+        --url="https://${DOMAIN_NAME}" \
         --title="Inception WordPress" \
         --admin_user="$WP_ADMIN_USER" \
         --admin_password="$WP_ADMIN_PASSWORD" \

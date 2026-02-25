@@ -2,9 +2,16 @@ NAME = inception
 COMPOSE = srcs/docker-compose.yml
 
 LOGIN = $(shell whoami)
+DOMAIN_NAME = $(LOGIN).42.fr
+
 DATA_PATH = /home/$(LOGIN)/data
 WP_PATH = $(DATA_PATH)/wordpress
 DB_PATH = $(DATA_PATH)/database
+
+export LOGIN
+export DOMAIN_NAME
+export WP_PATH
+export DB_PATH
 
 all: up
 

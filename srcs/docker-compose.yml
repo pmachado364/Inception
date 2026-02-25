@@ -19,12 +19,17 @@ services:
     restart: on-failure
     env_file:
       - .env
+    environment:
+      - DOMAIN_NAME=${DOMAIN_NAME}
     depends_on:
       - mariadb
     
   nginx:
     container_name: nginx
-    build: ./requirements/nginx
+    build:
+      context: ./requirements/nginx
+      args:
+        DOMAIN_NAME: ${DOMAIN_NAME}
     volumes:
       - wordpress:/var/www/html
     ports:
@@ -40,13 +45,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/pmachado/data/database
+      device: ${DB_PATH}
       o: bind
   wordpress:
     driver: local
     driver_opts:
       type: none
-      device: /home/pmachado/data/wordpress
+      device: ${WP_PATH}
       o: bind
 
 networks:
