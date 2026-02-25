@@ -37,7 +37,7 @@ sudo nano /etc/hosts
 
 Add the following line:  
 `127.0.0.1 <your_login>.42.fr`  
-Replace <your_login> with your system username (whoami).  
+Replace <your_login> with your system username (`whoami`).  
 
 ## Starting the project
 
